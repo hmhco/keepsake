@@ -1,0 +1,44 @@
+---
+vault_address: https://vault:8200
+vault_token: token
+vault_pki-path: keepsake
+renewal_coefficient: 0.9
+certificates:
+  - cname: certset.keepsake.com
+    altnames:
+      - foo.keepsake.com
+    vaultrole: keepsake
+    ttl: 10m
+    cert: testdata/keepsake_client.crt
+    key: testdata/keepsake_client.key
+    root: testdata/root.crt
+    cmd: 'echo updated certset'
+    ipaddresses:
+      - "127.0.0.1"
+    tests:
+      cname: ""
+      cacname: keepsake
+  - cname: certset2.keepsake.com
+    vaultrole: keepsake
+    ttl: 10m
+    cert: testdata/keepsake_client2.crt
+    key: testdata/keepsake_client2.key
+    root: testdata/root.crt
+    cmd: 'echo updated certset2'
+    ipaddresses:
+      - "127.0.0.1"
+    tests:
+      cname: ""
+      cacname: keepsake
+  - cname: certset.keepsake.com
+    vaultrole: keepsake
+    ttl: 10m
+    bundle: testdata/keepsake_client_bundle.pem
+    key: testdata/keepsake_client.key
+    cmd: 'echo updated bundle'
+    ipaddresses:
+      - "127.0.0.1"
+    tests:
+      cname: ""
+      cacname: keepsake
+ 
